@@ -12,7 +12,7 @@ import google.generativeai as genai
 # images = convert_from_path("sample.pdf", poppler_path="C:\\Program Files (x86)\\poppler\\Library\\bin")
 
 
-POPPLER_PATH = "C:\Users\USER\Downloads\Release-24.08.0-0"  # Poppler is installed in this directory on Linux (Streamlit Cloud)
+POPPLER_PATH = "C:\\Users\\USER\\Downloads\\Release-24.08.0-0"  # Poppler is installed in this directory on Linux (Streamlit Cloud)
 
 def input_pdf_setup(uploaded_file):
     images = pdf2image.convert_from_bytes(uploaded_file.read(), poppler_path=POPPLER_PATH)
