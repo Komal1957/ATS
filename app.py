@@ -14,9 +14,7 @@ import google.generativeai as genai
 
 POPPLER_PATH = "C:\\Users\\USER\\Downloads\\Release-24.08.0-0"  # Poppler is installed in this directory on Linux (Streamlit Cloud)
 
-def input_pdf_setup(uploaded_file):
-    images = pdf2image.convert_from_bytes(uploaded_file.read(), poppler_path=POPPLER_PATH)
-    return images
+
 
 
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
@@ -30,7 +28,7 @@ def get_gemini_response(input,pdf_content,prompt):
 def input_pdf_setup(uploaded_file):
     if uploaded_file is not None:
     ##Convert the PDF to Image
-        images=pdf2image.convert_from_bytes(uploaded_file.read())
+        images=pdf2image.convert_from_bytes(uploaded_file.read(),  poppler_path=POPPLER_PATH)
 
         first_page=images[0]
 
