@@ -11,8 +11,12 @@ import google.generativeai as genai
 # from pdf2image import convert_from_path
 # images = convert_from_path("sample.pdf", poppler_path="C:\\Program Files (x86)\\poppler\\Library\\bin")
 
-
-POPPLER_PATH = "C:\\Program Files (x86)\\poppler\\Library\\bin"  # Poppler is installed in this directory on Windows (Streamlit Cloud)
+# Automatically detect OS and set Poppler path
+if platform.system() == "Windows":
+    POPPLER_PATH = "C:\\Program Files (x86)\\poppler\\Library\\bin"
+else:
+    POPPLER_PATH = "/usr/bin"  # Default path for Poppler on Linux (Streamlit Cloud)
+# POPPLER_PATH = ""  # Poppler is installed in this directory on Windows (Streamlit Cloud)
 
 
 
