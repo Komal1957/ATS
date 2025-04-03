@@ -85,7 +85,7 @@ First the output should come as percentage and then keywords missing and last fi
 
 if submit1:
     if uploaded_file is not None :
-        pdf_content=input_pdf_setup(uploaded_file)
+        pdf_content=input_pdf_setup(uploaded_file ,poppler_path=POPPLER_PATH)
         response=get_gemini_response(input_prompt1,pdf_content,input_text)
         st.subheader("The Response is")
         st.write(response)
@@ -95,7 +95,7 @@ if submit1:
 
 elif submit2:
     if uploaded_file is not None :
-        pdf_content=input_pdf_setup(uploaded_file)
+        pdf_content=input_pdf_setup(uploaded_file , poppler_path=POPPLER_PATH)
         response=get_gemini_response(input_prompt3,pdf_content,input_text)
         st.subheader("The Response is")
         st.write(response)
