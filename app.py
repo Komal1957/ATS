@@ -10,7 +10,7 @@ import google.generativeai as genai
 
 # Load environment variables
 load_dotenv()
-GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
 # Configure Gemini API
 if GOOGLE_API_KEY:
