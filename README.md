@@ -65,15 +65,15 @@ streamlit run app.py
 ```
 ### 📄 Resume Upload Interface
 ![Resume Upload](![image](https://github.com/user-attachments/assets/6ef3ecb5-825e-49da-bb8f-e9dde91abfbc)
-)
+
 
 ### 🧠 Gemini AI Feedback
 ![Gemini Feedback](![image](https://github.com/user-attachments/assets/8eaeef8d-c7de-48c5-a82c-0088236bfecf)
-)
+
 
 ### 📊 Match Percentage Output
 ![Match Result](![image](https://github.com/user-attachments/assets/4c7a1eae-48a8-438b-8903-d5c07511d675)
-)
+
 
 ## 🔗 Live Demo  
 🌐 [Click here to view the live site](Coming Soon!!..)
