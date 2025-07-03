@@ -6,7 +6,8 @@ import streamlit as st
 import os
 import io
 import time
-import fitz  # ✅ Replaces pdf2image
+from PIL import Image
+import pdf2image
 import google.generativeai as genai
 
 # Configure Gemini API key
@@ -27,30 +28,25 @@ def get_gemini_response(input, pdf_content, prompt):
         st.error(f"❌ Gemini API call failed: {str(e)}")
         return "⚠️ There was a problem getting a response from Gemini."
 
-# ✅ Updated to use fitz (PyMuPDF) with logging
 def input_pdf_setup(uploaded_file):
     if uploaded_file is not None:
-        try:
-            st.write("📄 Reading PDF...")
-            pdf_data = uploaded_file.read()
-            doc = fitz.open(stream=pdf_data, filetype="pdf")
+        ## Convert the PDF to image
+        images=pdf2image.convert_from_bytes(uploaded_file.read())
 
-            st.write("🖼 Rendering first page as image...")
-            pix = doc[0].get_pixmap()
-            img_byte_arr = pix.tobytes("jpeg")  # Directly get JPEG bytes
+        first_page=images[0]
 
-            st.write("📦 Encoding image to base64...")
-            pdf_parts = [
-                {
-                    "mime_type": "image/jpeg",
-                    "data": base64.b64encode(img_byte_arr).decode()
-                }
-            ]
-            st.success("✅ PDF processing complete.")
-            return pdf_parts
-        except Exception as e:
-            st.error(f"❌ Error reading PDF: {str(e)}")
-            return None
+        # Convert to bytes
+        img_byte_arr = io.BytesIO()
+        first_page.save(img_byte_arr, format='JPEG')
+        img_byte_arr = img_byte_arr.getvalue()
+
+        pdf_parts = [
+            {
+                "mime_type": "image/jpeg",
+                "data": base64.b64encode(img_byte_arr).decode()  # encode to base64
+            }
+        ]
+        return pdf_parts
     else:
         raise FileNotFoundError("No file uploaded")
 
@@ -104,3 +100,6 @@ elif submit3:
                 st.write(response)
     else:
         st.warning("⚠️ Please upload your resume.")
+
+
+        
